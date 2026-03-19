@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-
-source "$(dirname "$0")/utils.sh"
+#!/usr/bin/bash
 
 mostrar_interfaces() {
     echo "Interfaces Disponibles:"
@@ -26,9 +24,9 @@ conectar_wifi() {
 
 configurar_ip() {
     read -p "Interfaz a configurar: " interfaz
-    echo "1) Dinámica (DHCP)"
-    echo "2) Estática"
-    read -p "Opción: " tipo
+    echo "1) Dinamica "
+    echo "2) Estatica"
+    read -p "Opcion: " tipo
     
     if [ "$tipo" == "1" ]; then
         sudo nmcli con add type ethernet ifname "$interfaz" con-name "DHCP-$interfaz" ipv4.method auto
@@ -49,9 +47,9 @@ menu() {
     echo "1. Mostrar interfaces"
     echo "2. Encender/Apagar interfaz"
     echo "3. Conectar a Wi-Fi"
-    echo "4. Configurar IP (DHCP/Estática)"
+    echo "4. Configurar IP "
     echo "5. Salir"
-    read -p "Seleccione una opción: " opt
+    read -p "Seleccione una opcion: " opt
     
     case $opt in
         1) mostrar_interfaces ;;
@@ -59,7 +57,7 @@ menu() {
         3) conectar_wifi ;;
         4) configurar_ip ;;
         5) exit 0 ;;
-        *) echo "Opción no válida" ;;
+        *) echo "Opcion no vlida" ;;
     esac
     read -p "Presione Enter para continuar..."
     menu
